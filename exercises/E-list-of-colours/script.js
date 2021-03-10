@@ -2,13 +2,6 @@
 
 const content = document.querySelector("#content");
 
-function displayChosenColour(e) {
-  const target = e.target;
-  const p = document.querySelector("p");
-  p.innerText = `You have chosen the colour ${target}`;
-  p.style.color = target;
-}
-
 function listOfColours(colors) {
   const select = document.createElement("select");
   const p = document.createElement("p");
@@ -18,7 +11,12 @@ function listOfColours(colors) {
     const option = document.createElement("option");
     option.innerText = color;
     select.appendChild(option);
-    option.addEventListener("change", () => displayChosenColour(color), false);
+    select.addEventListener("change", (e) => {
+      const target = e.target.value;
+      const p = document.querySelector("p");
+      p.innerText = `You have chosen the colour ${target}`;
+      p.style.color = target;
+    });
   });
   content.appendChild(select);
   content.appendChild(p);
